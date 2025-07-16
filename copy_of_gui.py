@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import gradio as gr
-import faiss
-import pandas as pd
-import torch
-from transformers import T5ForConditionalGeneration, T5Tokenizer
-from sentence_transformers import SentenceTransformer
-
 # Load dataset
 dataset = pd.read_csv("/content/drive/MyDrive/Final/sampled_dataset_no_nulls_only_EN_NEW.csv")
 
