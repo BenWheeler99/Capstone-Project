@@ -8,7 +8,7 @@ import torch
 import gradio as gr
 
 # Load dataset
-dataset = pd.read_csv("sampled_dataset_no_nulls_only_EN_NEW.csv")
+dataset = pd.read_csv("/Users/benjaminwheeler/Documents/GitHub/Capstone-Project/sampled_dataset_no_nulls_only_EN_NEW.csv")
 
 # https://faiss.ai/index.html This link is for FAISS documentation
 # Load FAISS index
@@ -17,7 +17,7 @@ index = faiss.IndexFlatL2(embedding_model.get_sentence_embedding_dimension())
 index.add(embedding_model.encode(dataset["summary"].tolist(), convert_to_numpy=True))
 
 # Load your fine-tuned LLM
-model_path = "/content/drive/MyDrive/Final/book-recommender-model-v3"  # Update with your saved model path
+model_path = "/Users/benjaminwheeler/Documents/GitHub/Capstone-Project/book-recommender-model-v3"  # Update with your saved model path
 tokenizer = T5Tokenizer.from_pretrained(model_path) # this is the tokenizer that matches my t5-base model
 model = T5ForConditionalGeneration.from_pretrained(model_path) # This allows for text generation from my t5-base model
 device = "cuda" if torch.cuda.is_available() else "cpu" # This tells the colab to use GPU if possible. If not, use CPU
@@ -40,7 +40,8 @@ def recommend_books(prompt):
 
     # Step 3: Generate a recommendation using the LLM
     input_text = f"Recommend a book based on these descriptions: {' '.join(summaries)}"
-    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding="max_length", max_length=256).to(device)
+    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding="max_length", max_length=256)
+    inputs = {k: v.to(device) for k, v in inputs.items()}
 
     with torch.no_grad():
         output = model.generate(**inputs, max_length=50)
@@ -62,4 +63,4 @@ interface = gr.Interface(
 )
 
 # Launch the app
-interface.launch()
+interface.launch(inbrowser=True)
