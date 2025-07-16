@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+import faiss
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+import torch
+import gradio as gr
+
 # Load dataset
-dataset = pd.read_csv("/content/drive/MyDrive/Final/sampled_dataset_no_nulls_only_EN_NEW.csv")
+dataset = pd.read_csv("sampled_dataset_no_nulls_only_EN_NEW.csv")
 
 # https://faiss.ai/index.html This link is for FAISS documentation
 # Load FAISS index
