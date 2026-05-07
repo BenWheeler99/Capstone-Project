@@ -1,14 +1,3 @@
----
-title: AI-Powered Book Recommendation System
-emoji: "📚"
-colorFrom: indigo
-colorTo: blue
-sdk: gradio
-sdk_version: "4.44.1"
-app_file: app.py
-pinned: false
----
-
 # AI-Powered Book Recommendation System
 
 This project is a Gradio-powered web app that recommends books based on your description. It combines semantic search with FAISS and a fine-tuned T5 model to produce a concise recommendation from similar books in the corpus.
