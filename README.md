@@ -82,18 +82,7 @@ The app will open automatically in your browser at [http://127.0.0.1:7860](http:
   ```sh
   brew install cmake pkg-config
   ```
-
-## Deploying on Hugging Face Spaces
-
-To make your app public and runnable from a browser, you can use [Hugging Face Spaces](https://huggingface.co/spaces):
-
-1. **Create a new Space** at [https://huggingface.co/spaces](https://huggingface.co/spaces) and select the **Gradio** SDK.
-2. **Upload your files** (`app.py`, model folder, dataset, and `requirements.txt`).
-3. **Configure your Space** with a `README.md` and a `README.md`-style YAML block at the top (see below).
-4. **Set your main file** to `app.py` in the YAML block.
-
-Example configuration block for Spaces (put at the top of your README or in a separate `README.md`):
-
+  
 ```yaml
 ---
 title: AI-Powered Book Recommendation System
@@ -111,9 +100,6 @@ pinned: false
 - Make sure your `requirements.txt` lists all dependencies.
 - The app will run automatically when the Space is launched.
 
----
-
-Let me know if you want this added directly to your README.md file!
 
 
 
