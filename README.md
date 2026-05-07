@@ -5,13 +5,20 @@ colorFrom: indigo
 colorTo: blue
 sdk: gradio
 sdk_version: "4.44.1"
-app_file: copy_of_gui.py
+app_file: app.py
 pinned: false
 ---
 
 # AI-Powered Book Recommendation System
 
-This project is a Gradio-powered web app that recommends books based on your description, using a fine-tuned T5 model and semantic search with FAISS.
+This project is a Gradio-powered web app that recommends books based on your description. It combines semantic search with FAISS and a fine-tuned T5 model to produce a concise recommendation from similar books in the corpus.
+
+## Highlights
+
+- hybrid recommendation pipeline with retrieval and generation
+- local model loading for offline inference
+- clean Gradio UI with example prompts and top-match inspection
+- repository-ready setup with explicit dependencies and ignore rules
 
 ## Requirements
 
@@ -26,6 +33,11 @@ This project is a Gradio-powered web app that recommends books based on your des
    cd Capstone-Project
    ```
 
+   If the dataset or model was committed with Git LFS, fetch the large files after cloning:
+   ```sh
+   git lfs pull
+   ```
+
 2. **Create and activate a virtual environment:**
    ```sh
    python3.9 -m venv .venv
@@ -36,7 +48,7 @@ This project is a Gradio-powered web app that recommends books based on your des
    ```sh
    pip install -r requirements.txt
    ```
-   If you don’t have a `requirements.txt`, install manually:
+   If you need to install manually, use:
    ```sh
    pip install pandas sentence-transformers faiss-cpu transformers torch gradio sentencepiece
    ```
@@ -44,11 +56,20 @@ This project is a Gradio-powered web app that recommends books based on your des
 4. **Download or place your model and dataset:**
    - Place your fine-tuned T5 model files in `book-recommender-model-v3/`
    - Place your dataset CSV as `sampled_dataset_no_nulls_only_EN_NEW.csv` in the project root
+   - Keep the file names unchanged so the app can load them automatically
+
+## Project Structure
+
+- `app.py`: the real runtime entrypoint
+- `copy_of_gui.py`: compatibility launcher for older workflows
+- `book_system.py`: archived Colab notebook export used for training and data prep
+- `book-recommender-model-v3/`: saved local model artifacts
+- `sampled_dataset_no_nulls_only_EN_NEW.csv`: the book corpus used at inference time
 
 ## Running the App
 
 ```sh
-python copy_of_gui.py
+python app.py
 ```
 
 The app will open automatically in your browser at [http://127.0.0.1:7860](http://127.0.0.1:7860).
@@ -67,9 +88,9 @@ The app will open automatically in your browser at [http://127.0.0.1:7860](http:
 To make your app public and runnable from a browser, you can use [Hugging Face Spaces](https://huggingface.co/spaces):
 
 1. **Create a new Space** at [https://huggingface.co/spaces](https://huggingface.co/spaces) and select the **Gradio** SDK.
-2. **Upload your files** (`copy_of_gui.py`, model folder, dataset, and `requirements.txt`).
+2. **Upload your files** (`app.py`, model folder, dataset, and `requirements.txt`).
 3. **Configure your Space** with a `README.md` and a `README.md`-style YAML block at the top (see below).
-4. **Rename your main file** to `app.py` or set `app_file: copy_of_gui.py` in the YAML block.
+4. **Set your main file** to `app.py` in the YAML block.
 
 Example configuration block for Spaces (put at the top of your README or in a separate `README.md`):
 
@@ -81,7 +102,7 @@ colorFrom: indigo
 colorTo: blue
 sdk: gradio
 sdk_version: "4.44.1"
-app_file: copy_of_gui.py
+app_file: app.py
 pinned: false
 ---
 ```
