@@ -3,21 +3,19 @@ title: AI-Powered Book Recommendation System
 emoji: "📚"
 colorFrom: indigo
 colorTo: blue
-sdk: gradio
-sdk_version: "4.44.1"
 app_file: app.py
 pinned: false
 ---
 
 # AI-Powered Book Recommendation System
 
-This project is a Gradio-powered web app that recommends books based on your description. It combines semantic search with FAISS and a fine-tuned T5 model to produce a concise recommendation from similar books in the corpus.
+This project is a command-line book recommender that combines semantic search with FAISS and a fine-tuned T5 model to produce a concise recommendation from similar books in the corpus.
 
 ## Highlights
 
 - hybrid recommendation pipeline with retrieval and generation
 - local model loading for offline inference
-- clean Gradio UI with example prompts and top-match inspection
+- terminal-friendly output with top-match inspection
 - repository-ready setup with explicit dependencies and ignore rules
 
 ## Requirements
@@ -69,10 +67,10 @@ This project is a Gradio-powered web app that recommends books based on your des
 ## Running the App
 
 ```sh
-python app.py
+python app.py "a fast-paced mystery set in a small coastal town"
 ```
 
-The app will open automatically in your browser at [http://127.0.0.1:7860](http://127.0.0.1:7860).
+If you omit the prompt, the script will ask for one interactively.
 
 ## Troubleshooting
 
@@ -83,37 +81,10 @@ The app will open automatically in your browser at [http://127.0.0.1:7860](http:
   brew install cmake pkg-config
   ```
 
-## Deploying on Hugging Face Spaces
+## Notes
 
-To make your app public and runnable from a browser, you can use [Hugging Face Spaces](https://huggingface.co/spaces):
-
-1. **Create a new Space** at [https://huggingface.co/spaces](https://huggingface.co/spaces) and select the **Gradio** SDK.
-2. **Upload your files** (`app.py`, model folder, dataset, and `requirements.txt`).
-3. **Configure your Space** with a `README.md` and a `README.md`-style YAML block at the top (see below).
-4. **Set your main file** to `app.py` in the YAML block.
-
-Example configuration block for Spaces (put at the top of your README or in a separate `README.md`):
-
-```yaml
----
-title: AI-Powered Book Recommendation System
-emoji: "📚"
-colorFrom: indigo
-colorTo: blue
-sdk: gradio
-sdk_version: "4.44.1"
-app_file: app.py
-pinned: false
----
-```
-
-**Note:**  
 - Make sure your `requirements.txt` lists all dependencies.
-- The app will run automatically when the Space is launched.
-
----
-
-Let me know if you want this added directly to your README.md file!
+- If you cloned the repo fresh, run `git lfs pull` so the dataset and model files are restored.
 
 
 
