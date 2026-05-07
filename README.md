@@ -72,10 +72,37 @@ If you omit the prompt, the script will ask for one interactively.
   brew install cmake pkg-config
   ```
 
-## Notes
+## Deploying on Hugging Face Spaces
 
+To make your app public and runnable from a browser, you can use [Hugging Face Spaces](https://huggingface.co/spaces):
+
+1. **Create a new Space** at [https://huggingface.co/spaces](https://huggingface.co/spaces) and select the **Gradio** SDK.
+2. **Upload your files** (`app.py`, model folder, dataset, and `requirements.txt`).
+3. **Configure your Space** with a `README.md` and a `README.md`-style YAML block at the top (see below).
+4. **Set your main file** to `app.py` in the YAML block.
+
+Example configuration block for Spaces (put at the top of your README or in a separate `README.md`):
+
+```yaml
+---
+title: AI-Powered Book Recommendation System
+emoji: "📚"
+colorFrom: indigo
+colorTo: blue
+sdk: gradio
+sdk_version: "4.44.1"
+app_file: app.py
+pinned: false
+---
+```
+
+**Note:**  
 - Make sure your `requirements.txt` lists all dependencies.
-- If you cloned the repo fresh, run `git lfs pull` so the dataset and model files are restored.
+- The app will run automatically when the Space is launched.
+
+---
+
+Let me know if you want this added directly to your README.md file!
 
 
 
