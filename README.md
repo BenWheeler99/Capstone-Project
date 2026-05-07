@@ -1,12 +1,3 @@
----
-title: AI-Powered Book Recommendation System
-emoji: "📚"
-colorFrom: indigo
-colorTo: blue
-app_file: app.py
-pinned: false
----
-
 # AI-Powered Book Recommendation System
 
 This project is a command-line book recommender that combines semantic search with FAISS and a fine-tuned T5 model to produce a concise recommendation from similar books in the corpus.
